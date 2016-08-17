@@ -18,43 +18,43 @@ public class Card {
 		}
 
 		if (cvalue == 0) {
-			valuestring = "2";
+			valuestring = RANKS[0];
 			value = 2;
 		} else if (cvalue == 1) {
-			valuestring = "3";
+			valuestring = RANKS[1];
 			value = 3;
 		} else if (cvalue == 2) {
-			valuestring = "4";
+			valuestring = RANKS[2];
 			value = 4;
 		} else if (cvalue == 3) {
-			valuestring = "5";
+			valuestring = RANKS[3];
 			value = 5;
 		} else if (cvalue == 4) {
-			valuestring = "6";
+			valuestring = RANKS[4];
 			value = 6;
 		} else if (cvalue == 5) {
-			valuestring = "7";
+			valuestring = RANKS[5];
 			value = 7;
 		} else if (cvalue == 6) {
-			valuestring = "8";
+			valuestring = RANKS[6];
 			value = 8;
 		} else if (cvalue == 7) {
-			valuestring = "9";
+			valuestring = RANKS[7];
 			value = 9;
 		} else if (cvalue == 8) {
-			valuestring = "10";
+			valuestring = RANKS[8];
 			value = 10;
 		} else if (cvalue == 9) {
-			valuestring = "Jack";
+			valuestring = RANKS[9];
 			value = 10;
 		} else if (cvalue == 10) {
-			valuestring = "Queen";
+			valuestring = RANKS[10];
 			value = 10;
 		} else if (cvalue == 11) {
-			valuestring = "King";
+			valuestring = RANKS[11];
 			value = 10;
 		} else {
-			valuestring = "Ace";
+			valuestring = RANKS[12];
 			value = 11;
 		}
 	}

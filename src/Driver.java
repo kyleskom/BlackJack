@@ -45,8 +45,41 @@ public class Driver {
 			Scanner sh = new Scanner(System.in);
 			char ch = sh.next().charAt(0);
 			if (ch == 's') {
-				System.out.println("-------------------------------");
-				System.out.println("STAND");
+				stand();
+			} else if (ch == 'h') {
+				char z = 'h';
+
+				System.out.println("HIT");
+				do {
+					bj.playerHit();
+					printPlayerHand();
+					if (bj.playerHandValue() < 22){
+					Scanner ht = new Scanner(System.in);
+					z = sh.next().charAt(0);
+					}
+					else {
+						z = 'n';
+						System.out.println("You Bust!");
+						if (win()) {
+							money = money + bet;
+							System.out.println("You Win! You have " + money + " dollars");
+
+						} else {
+							money = money - bet;
+							System.out.println("You Lose! You have " + money + " dollars");
+						}
+					}
+				} while (z == 'h');
+
+				if (z == 's') {
+					stand();
+				}
+			} else if (ch == 'd') {
+				System.out.println("DOUBLE DOWN");
+				bet = bet * 2;
+
+				bj.playerHit();
+				printPlayerHand();
 				bj.addFaceDown();
 				System.out.println("-------------------------------");
 				System.out.println(
@@ -64,11 +97,28 @@ public class Driver {
 					money = money - bet;
 					System.out.println("You Lose! You have " + money + " dollars");
 				}
-			} else if (ch == 'h') {
-				System.out.println("HIT");
-			} else if (ch == 'd') {
-				System.out.println("DOUBLE DOWN");
 			}
+		}
+	}
+
+	public void stand() {
+		System.out.println("-------------------------------");
+		System.out.println("STAND");
+		bj.addFaceDown();
+		System.out.println("-------------------------------");
+		System.out.println("Dealer flips over a " + bj.dealerfacedown.toString() + " and has " + bj.dealerHandValue());
+		System.out.println("-------------------------------");
+		if (underCheck()) {
+			dealerUnder();
+		}
+
+		if (win()) {
+			money = money + bet;
+			System.out.println("You Win! You have " + money + " dollars");
+
+		} else {
+			money = money - bet;
+			System.out.println("You Lose! You have " + money + " dollars");
 		}
 	}
 
@@ -98,7 +148,7 @@ public class Driver {
 	}
 
 	public boolean win() {
-		if ((bj.dealerHandValue() > 21) || (bj.playerHandValue() > bj.dealerHandValue())) {
+		if ((bj.dealerHandValue() > 21) || (bj.playerHandValue() > bj.dealerHandValue()) && bj.playerHandValue() < 22) {
 			return true;
 		}
 		return false;
